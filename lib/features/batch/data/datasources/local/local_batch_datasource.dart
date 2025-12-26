@@ -47,9 +47,9 @@ class BatchLocalDatasource implements IBatchDataSource {
   }
   
   @override
-  Future<BatchHiveModel?> getBatchbyId(String batchId) {
+  Future<BatchHiveModel?> getBatchbyId(String batchId) async {
    try{
-      return _hiveService.getBatchId(batchId);
+      return _hiveService.getBatchbyId(batchId);
     }catch(e){
       return null;
     }

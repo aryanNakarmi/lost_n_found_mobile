@@ -54,7 +54,7 @@ class HiveService {
   }
   
   //get batch by id
-  BatchHiveModel?getBatchId(String batchId){
+  BatchHiveModel?getBatchbyId(String batchId){
     return _batchBox.get(batchId);
   }
   
