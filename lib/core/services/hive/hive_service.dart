@@ -10,7 +10,7 @@ class HiveService {
     final path = '${directory.path}/${HiveTableConstant.dbName}';
     
      Hive.init(path);
-    _registerAdpters();
+    _registerAdapters();
     await _openBoxes();
   }
 
@@ -28,11 +28,43 @@ class HiveService {
 
   //Delete all batches
   Future<void> deleteAllBatches() async{
-    await _batchBoxes.clear();
+    await _batchBox.clear();
   }
 
   //Close all boxes
   Future<void> close() async{
     await Hive.close();
+  }
+
+  //==========Batch CRUD Operation=============//
+
+  //get batch box
+  Box<BatchHiveModel> get _batchBox=>
+  Hive.box<BatchHiveModel>(HiveTableConstant.batchTable);
+  
+  //create a new Batch
+  Future<BatchHiveModel> createBatch(BatchHiveModel batch) async {
+    await _batchBox.put(batch.batchId, batch);
+    return batch;
+  }
+
+  //Get all batches
+  List<BatchHiveModel> getAllBatches(){
+    return _batchBox.values.toList();
+  }
+  
+  //get batch by id
+  BatchHiveModel?getBatchId(String batchId){
+    return _batchBox.get(batchId);
+  }
+  
+  // Update a batch
+  Future<void> updateBatch(BatchHiveModel batch) async {
+    await _batchBox.put(batch.batchId, batch);
+  }
+
+  // Delete a batch
+  Future<void> deleteBatch(String batchId) async {
+    await _batchBox.delete(batchId);
   }
 }
