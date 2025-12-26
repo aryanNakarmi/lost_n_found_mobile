@@ -4,6 +4,7 @@ import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:uuid/uuid.dart';
 
 part 'batch_hive_model.g.dart';
+//dart run build_runner build -d
 
 @HiveType(typeId: HiveTableConstant.batchTypeId)
 class BatchHiveModel extends HiveObject {
