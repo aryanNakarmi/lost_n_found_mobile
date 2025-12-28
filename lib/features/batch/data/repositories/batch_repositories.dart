@@ -1,4 +1,5 @@
-import 'package:either_dart/src/either.dart';
+
+import 'package:dartz/dartz.dart';
 import 'package:lost_n_found/core/error/failures.dart';
 import 'package:lost_n_found/features/batch/data/datasources/batch_datasource.dart';
 import 'package:lost_n_found/features/batch/data/models/batch_hive_model.dart';
