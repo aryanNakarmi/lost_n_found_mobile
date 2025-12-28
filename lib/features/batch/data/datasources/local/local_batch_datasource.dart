@@ -55,6 +55,5 @@ class BatchLocalDatasource implements IBatchDataSource {
     }
   }
   
-
   
 }
