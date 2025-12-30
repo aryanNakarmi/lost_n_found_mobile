@@ -6,12 +6,17 @@ import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:lost_n_found/features/batch/domain/repositories/batch_repository.dart';
 
 class UpdateBatchUsecaseParams extends Equatable {
-    final BatchEntity batch;
+    final String batchId;
+    final String batchName;
+    final String? status;
 
-  const UpdateBatchUsecaseParams({required this.batch});
+  const UpdateBatchUsecaseParams({
+    required this.batchId, 
+    required this.batchName, 
+    required this.status});
   @override
-  // TODO: implement props
-  List<Object?> get props => [batch];
+  
+  List<Object?> get props => [batchId, batchName, status];
 
 }
 
@@ -19,7 +24,12 @@ class UpdateBatchUsecase implements UsecaseWithParams<void,UpdateBatchUsecasePar
     final IBatchRepository _batchRepository;
     UpdateBatchUsecase(this._batchRepository);
   @override
-  Future<Either<Failure, dynamic>> call(params) {
-    return _batchRepository.updateBatch(params.batch);
+  Future<Either<Failure, bool>> call(params) {
+    final batch = BatchEntity(
+      batchName: params.batchName,
+      batchId: params.batchId,
+      status: params.status
+      );
+    return _batchRepository.updateBatch(batch);
   }
 }

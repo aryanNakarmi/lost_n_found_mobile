@@ -5,10 +5,10 @@ import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:lost_n_found/features/batch/domain/repositories/batch_repository.dart';
 
 
-class GetAllBatchUsecaseWithoutParams implements UsecaseWithoutParams {
+class GetAllBatchUsecase implements UsecaseWithoutParams {
   final IBatchRepository _batchRepository;
 
-  GetAllBatchUsecaseWithoutParams({required IBatchRepository batchRepository}): _batchRepository = batchRepository;
+  GetAllBatchUsecase({required IBatchRepository batchRepository}): _batchRepository = batchRepository;
   
   @override
   Future<Either<Failure, List<BatchEntity>>> call(){
