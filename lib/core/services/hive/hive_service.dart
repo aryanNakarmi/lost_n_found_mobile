@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:lost_n_found/core/constants/hive_table_constant.dart';
+import 'package:lost_n_found/features/auth/data/models/auth_hive_model.dart';
 import 'package:lost_n_found/features/batch/data/models/batch_hive_model.dart';
 import 'package:lost_n_found/features/batch/data/models/category_hive_model.dart';
 import 'package:path_provider/path_provider.dart';
@@ -46,11 +47,18 @@ Future<void> insertDummyBatches() async{
     if(!Hive.isAdapterRegistered(HiveTableConstant.batchTypeId)){
       Hive.registerAdapter(BatchHiveModelAdapter());
     }
+
+    //Register other adapters here
+    if(!Hive.isAdapterRegistered(HiveTableConstant.authTypeId)){
+      Hive.registerAdapter(BatchHiveModelAdapter());
+    }
   }
 
   //Open all boxes
   Future<void> _openBoxes() async {
     await Hive.openBox<BatchHiveModel>(HiveTableConstant.batchTable);
+    await Hive.openBox<AuthHiveModel>(HiveTableConstant.authTable);
+
   }
 
   //Delete all batches
@@ -127,5 +135,37 @@ Future<void> insertDummyBatches() async{
   // Delete a batch
   Future<void> deleteCategory(String categoryId) async {
     await _categoryBox.delete(categoryId);
+  }
+
+
+
+
+// ==================Auth Queries===================
+Box<AuthHiveModel> get _authBox =>
+Hive.box<AuthHiveModel>(HiveTableConstant.authTable);
+
+Future<AuthHiveModel> registerUser(AuthHiveModel model) async {
+  await _authBox.put(model.authId, model);
+  return model;
+}
+
+//Login
+  AuthHiveModel? login(String email, String password) {
+    try {
+      return _authBox.values.firstWhere(
+        (user) => user.email == email && user.password == password,
+      );
+    } catch (e) {
+      return null;
+    }
+  }
+
+  //logout
+  Future<void> logoutUser(String authId) async{
+    await _authBox.delete(authId);
+  }
+  //get current user
+   AuthHiveModel? getCurrentUser(String authId) {
+    return _authBox.get(authId);
   }
 }
