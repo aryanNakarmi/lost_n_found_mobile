@@ -27,8 +27,9 @@ Future<void> insertDummyBatches() async{
   final box =await Hive.openBox<BatchHiveModel>(
     HiveTableConstant.batchTable
   );
+  if(box.isNotEmpty) return;
   final dummyBatches = [
-    BatchHiveModel.(batchName: '35-A'),
+    BatchHiveModel(batchName: '35-A'),
     BatchHiveModel(batchName: '35-B'),
     BatchHiveModel(batchName: '35-C'),
     BatchHiveModel(batchName: '35-D'),
