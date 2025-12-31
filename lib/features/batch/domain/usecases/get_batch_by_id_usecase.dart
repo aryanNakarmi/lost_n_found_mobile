@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:lost_n_found/core/error/failures.dart';
 import 'package:lost_n_found/core/usecases/app_usecase.dart';
+import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:lost_n_found/features/batch/domain/repositories/batch_repository.dart';
 
 class GetBatchByIdUsecaseParams extends Equatable {
@@ -18,7 +19,7 @@ class GetBatchByIdUsecase implements UsecaseWithParams<void,GetBatchByIdUsecaseP
     final IBatchRepository _batchRepository;
     GetBatchByIdUsecase(this._batchRepository);
   @override
-  Future<Either<Failure, dynamic>> call(params) {
+  Future<Either<Failure, BatchEntity>> call(params) {
     return _batchRepository.getBatchbyId(params.batchId);
   }
 }
