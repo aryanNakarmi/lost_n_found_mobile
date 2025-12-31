@@ -21,6 +21,19 @@ class HiveService {
     await _openBoxes();
   }
 
+
+Future<void> insertDummyBatches() async{
+  final box =await Hive.openBox<BatchHiveModel>(
+    HiveTableConstant.batchTable
+  );
+  final dummyBatches = [
+    BatchHiveModel(batchName: '35-A'),
+    BatchHiveModel(batchName: '35-B'),
+    BatchHiveModel(batchName: '35-C'),
+    BatchHiveModel(batchName: '35-D'),
+    BatchHiveModel(batchName: '35-E'),
+  ];
+}
   //Register all type adapters
   void _registerAdapters(){
     if(!Hive.isAdapterRegistered(HiveTableConstant.batchTypeId)){
