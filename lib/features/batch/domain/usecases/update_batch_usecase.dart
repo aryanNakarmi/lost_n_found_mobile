@@ -13,7 +13,7 @@ class UpdateBatchUsecaseParams extends Equatable {
   const UpdateBatchUsecaseParams({
     required this.batchId, 
     required this.batchName, 
-    required this.status});
+    this.status});
   @override
   
   List<Object?> get props => [batchId, batchName, status];
@@ -25,11 +25,11 @@ class UpdateBatchUsecase implements UsecaseWithParams<void,UpdateBatchUsecasePar
     UpdateBatchUsecase(this._batchRepository);
   @override
   Future<Either<Failure, bool>> call(params) {
-    final batch = BatchEntity(
+    final batchEntity = BatchEntity(
       batchName: params.batchName,
       batchId: params.batchId,
       status: params.status
       );
-    return _batchRepository.updateBatch(batch);
+    return _batchRepository.updateBatch(batchEntity);
   }
 }
