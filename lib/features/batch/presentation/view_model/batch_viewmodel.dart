@@ -19,7 +19,11 @@ class BatchViewmodel extends Notifier<BatchState> {
 
   @override
   BatchState build() {
-    // Initialize the usecases here using ref, which we will do later
+    // Initialize the usecases here using ref
+
+    _getAllBatchUsecase =ref.read(getAllBatchUsecaseProvider);
+    _updateBatchUsecase =ref.read(UpdateBatchUsecaseProvider);
+    _createBatchUsecase = ref.read(CreateBatchUsecaseProvider);
     return  BatchState();
   }
 
