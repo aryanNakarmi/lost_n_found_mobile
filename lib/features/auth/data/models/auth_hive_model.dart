@@ -4,7 +4,7 @@ import 'package:lost_n_found/features/auth/domain/entities/auth_entity.dart';
 import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:uuid/uuid.dart';
 
-path 'auth_hive_model.g.dart';
+part 'auth_hive_model.g.dart';
 
 @HiveType(typeId: HiveTableConstant.authTypeId)
 class AuthHiveModel extends HiveObject{
@@ -55,7 +55,7 @@ factory AuthHiveModel.fromEntity(AuthEntity entity){
       password: entity.password,
       batchId: entity.batchId ?? entity.batch?.batchId,
       profilePicture: entity.profilePicture,
-  )
+  );
 }
 //To entity
 AuthEntity toEntity({BatchEntity? batchEntity}){
