@@ -16,7 +16,7 @@ class BatchViewmodel extends Notifier<BatchState> {
   @override
   BatchState build() {
     // Initialize the usecases here using ref, which we will do later
-    return const BatchState();
+    return  BatchState();
   }
 
   Future<void> getAllBatches() async {
@@ -72,8 +72,8 @@ class BatchViewmodel extends Notifier<BatchState> {
         errorMessage: failure.message,
       ),
       (_) {
-        state = state.copyWith(status: BatchStatus.loaded);
-        batches: [batchId, batchName, status];
+        state = state.copyWith(status: BatchStatus.updated);
+        
       },
     );
   }

@@ -1,10 +1,17 @@
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lost_n_found/core/error/failures.dart';
 import 'package:lost_n_found/features/batch/data/datasources/batch_datasource.dart';
+import 'package:lost_n_found/features/batch/data/datasources/local/local_batch_datasource.dart';
 import 'package:lost_n_found/features/batch/data/models/batch_hive_model.dart';
 import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:lost_n_found/features/batch/domain/repositories/batch_repository.dart';
+
+final batchRepositoryProvider = Provider<IBatchRepository>((ref){
+  return BatchRepository(batchDatasource: ref.read(BatchLocalDatasourceProvider));
+});
+
 
 class BatchRepository implements IBatchRepository {
   final IBatchDataSource _batchDataSource;
