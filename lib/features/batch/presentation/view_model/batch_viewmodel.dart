@@ -6,6 +6,10 @@ import 'package:lost_n_found/features/batch/domain/usecases/get_batch_by_id_usec
 import 'package:lost_n_found/features/batch/domain/usecases/update_batch_usecase.dart';
 import 'package:lost_n_found/features/batch/presentation/state/batch_state.dart';
 
+final BatchViewmodelProvider = NotifierProvider<BatchViewmodel, BatchState>((){
+  return BatchViewmodel();
+});
+
 class BatchViewmodel extends Notifier<BatchState> {
   late final GetAllBatchUsecase _getAllBatchUsecase;
   late final CreateBatchUsecase _createBatchUsecase;

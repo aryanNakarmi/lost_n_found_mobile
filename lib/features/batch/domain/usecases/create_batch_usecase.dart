@@ -18,7 +18,7 @@ class CreateBatchUsecaseParams extends Equatable {
   List<Object?> get props => [batchName];
 }
 
-final CreateBatchUsecaseProviider = Provider<CreateBatchUsecase>((ref){
+final CreateBatchUsecaseProvider = Provider<CreateBatchUsecase>((ref){
   return CreateBatchUsecase(ref.read(batchRepositoryProvider));
 });
 
