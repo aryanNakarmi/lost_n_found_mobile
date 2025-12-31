@@ -1,8 +1,14 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lost_n_found/core/services/hive/hive_service.dart';
 import 'package:lost_n_found/features/batch/data/datasources/batch_datasource.dart';
 import 'package:lost_n_found/features/batch/data/models/batch_hive_model.dart';
 
+final BatchLocalDatasourceProvider = Provider<BatchLocalDatasource>((ref){
+  return BatchLocalDatasource(hiveService: ref.read(hiveServiceProvider));
+});
+
 class BatchLocalDatasource implements IBatchDataSource {
+  //dependency injection
   final HiveService _hiveService;
 
   BatchLocalDatasource({required HiveService hiveService}):_hiveService = hiveService;
