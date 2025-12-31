@@ -7,8 +7,8 @@ class HiveTableConstant{
   static const int batchTypeId = 0;
   static const String batchTable ='batch_table';
   
-  static const int studentTypeId = 1;
-  static const String studentTable ='batch_table';
+  static const int authTypeId = 1;
+  static const String authTable ='batch_table';
   
   static const int itemTypeId = 2;
   static const String itemTable ='batch_table';
