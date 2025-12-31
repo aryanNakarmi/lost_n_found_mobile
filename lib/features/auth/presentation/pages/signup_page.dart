@@ -231,7 +231,7 @@ void initState(){
                           decoration: const InputDecoration(
                             labelText: 'Code',
                             contentPadding: EdgeInsets.symmetric(
-                              horizontal: 12,
+                              horizontal: 10,
                               vertical: 16,
                             ),
                           ),
@@ -293,15 +293,17 @@ void initState(){
                   // Batch Selection
                   DropdownButtonFormField<String>(
                     initialValue: _selectedBatch,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Select Batch',
-                      hintText: 'Choose your batch',
+                      hintText: batchState.status == BatchStatus.loading 
+                      ? "Loading batches..." 
+                      : "Choose your batch",
                       prefixIcon: Icon(Icons.school_rounded),
                     ),
                     items: _batches.map((batch) {
                       return DropdownMenuItem<String>(
                         value: batch.batchId,
-                        child: Text(batch.batchName!),
+                        child: Text(batch.batchName),
                       );
                     }).toList(),
                     onChanged: (value) {

@@ -28,6 +28,11 @@ class BatchViewmodel extends Notifier<BatchState> {
   }
 
   Future<void> getAllBatches() async {
+
+        //wait for 2 seconds
+    Future.delayed(Duration(seconds: 2),(){});
+
+
     state = state.copyWith(status: BatchStatus.loading);
     final result = await _getAllBatchUsecase();
 
@@ -88,6 +93,7 @@ class BatchViewmodel extends Notifier<BatchState> {
 
   Future<void> deleteBatch(String batchId) async {
     state = state.copyWith(status: BatchStatus.loading);
+
 
     final result = await _deleteBatchUsecase(
       DeleteBatchUsecaseParams(batchId: batchId),
