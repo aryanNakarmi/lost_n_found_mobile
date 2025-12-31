@@ -28,12 +28,12 @@ class BatchViewmodel extends Notifier<BatchState> {
   }
 
   Future<void> getAllBatches() async {
+    state = state.copyWith(status: BatchStatus.loading);
 
         //wait for 2 seconds
-    Future.delayed(Duration(seconds: 2),(){});
+    await Future.delayed(Duration(seconds: 2));
 
 
-    state = state.copyWith(status: BatchStatus.loading);
     final result = await _getAllBatchUsecase();
 
     result.fold(
