@@ -20,13 +20,14 @@ class AuthRepository implements IAuthRepository{
   @override
   Future<Either<Failure, AuthEntity>> getCurrentUser() async {
     try{
+    
     final user = await _authDataSource.getCurrentUser();
 
     if(user != null){
         final entity = user.toEntity();
         return Right(entity);
     }
-    return Left(LocalDatabaseFailure(message: "No user logged in"));
+    return Left(LocalDatabaseFailure(message: "No user logged in to register user"));
 
    }catch(e){
     return Left(LocalDatabaseFailure(message: e.toString()));
@@ -44,8 +45,7 @@ class AuthRepository implements IAuthRepository{
         final entity = user.toEntity();
         return Right(entity);
     }
-     return Left(LocalDatabaseFailure(message: "Invalid email or password"));
-
+    return Left(LocalDatabaseFailure(message: "Invalid email or password"));
    }catch(e){
     return Left(LocalDatabaseFailure(message: e.toString()));
    }

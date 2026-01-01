@@ -16,9 +16,13 @@ class AuthLocalDatasource implements IAuthDataSource{
 
 
   @override
-  Future<AuthHiveModel> getCurrentUser() {
-    // TODO: implement getCurrentUser
-    throw UnimplementedError();
+  Future<AuthHiveModel?> getCurrentUser() async {
+    try {
+      // No persistent current-user tracking implemented yet; return null by default
+      return Future.value(null);
+    } catch (e) {
+      return Future.value(null);
+    }
   }
 
   @override
@@ -35,9 +39,9 @@ class AuthLocalDatasource implements IAuthDataSource{
   Future<AuthHiveModel?> login(String email, String password) async {
      try{
     final user = await _hiveService.loginUser(email, password);
-    return user;
+    return Future.value(user);
    }catch(e){
-    return null;
+    return Future.value(null);
    }
    
   }

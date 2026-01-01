@@ -62,6 +62,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final textColor = Theme.of(context).textTheme.bodyLarge?.color ?? AppColors.textDark;
     final secondaryTextColor = Theme.of(context).textTheme.bodySmall?.color ?? AppColors.textMuted;
 
+  final authState = ref.watch(AuthViewModelProvider);
   ref.listen<AuthState>(AuthViewModelProvider,(previous, next){
     if(next.status == AuthStatus.authenticated){
         //dashboard
@@ -200,7 +201,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: _isLoading
+                    child: authState.status == AuthStatus.loading
                         ? const SizedBox(
                             width: 24,
                             height: 24,

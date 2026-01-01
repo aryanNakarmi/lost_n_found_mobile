@@ -68,6 +68,8 @@ Future<void> login({
   }) async {
     state = state.copyWith(status: AuthStatus.loading);
 
+await Future.delayed(Duration(seconds: 2));
+
     final params = 
       LoginUsecaseParams(
   

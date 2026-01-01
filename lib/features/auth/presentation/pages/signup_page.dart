@@ -100,6 +100,7 @@ void initState(){
     // //listen for auth state changes
     // ref.read
     // ref.watch
+    
 
     ref.listen<AuthState>(AuthViewModelProvider, (previous,next){  
       if(next.status == AuthStatus.error){
