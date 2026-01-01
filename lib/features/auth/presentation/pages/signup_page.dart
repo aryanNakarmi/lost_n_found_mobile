@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lost_n_found/features/auth/presentation/state/auth_state.dart';
 import 'package:lost_n_found/features/auth/presentation/view_model/auth_view_model.dart';
 import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:lost_n_found/features/batch/presentation/state/batch_state.dart';
@@ -28,7 +29,6 @@ class _SignupPageState extends ConsumerState<SignupPage> {
 
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
-  bool _isLoading = false;
   bool _agreedToTerms = false;
   String? _selectedBatch;
   String _selectedCountryCode = '+977'; // Default Nepal
@@ -95,6 +95,27 @@ void initState(){
     final batchState =ref.watch(batchViewmodelProvider);
     //auuth state
     final authState = ref.watch(AuthViewModelProvider);
+
+
+    // //listen for auth state changes
+    // ref.read
+    // ref.watch
+
+    ref.listen<AuthState>(AuthViewModelProvider, (previous,next){  
+      if(next.status == AuthStatus.error){
+        SnackbarUtils.showError(
+         context,
+         next.errorMessage ?? "Registration Failed"
+         );
+      }else if(next.status == AuthStatus.registered){
+         SnackbarUtils.showSuccess(
+         context,
+         next.errorMessage ?? "Registration Successful"
+         );
+      }
+
+
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -445,7 +466,7 @@ void initState(){
                   GradientButton(
                     text: 'Create Account',
                     onPressed: _handleSignup,
-                    isLoading: _isLoading,
+                    isLoading: authState.status == AuthStatus.loading,
                   ),
                   const SizedBox(height: 32),
 

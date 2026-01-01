@@ -9,19 +9,19 @@ import 'package:lost_n_found/features/auth/domain/repositories/auth_repository.d
 
 class LoginUsecaseParams extends Equatable{
  
-  final String username;
+  final String email;
   final String password;
   
   const LoginUsecaseParams({
 
-    required this.username, 
+    required this.email, 
     required this.password
     });
 
   @override
   List<Object?> get props => [
 
-    username,
+    email,
     password
   ];
 }
@@ -41,7 +41,7 @@ class LoginUsecase implements UsecaseWithParams<AuthEntity, LoginUsecaseParams>{
   @override
   Future<Either<Failure, AuthEntity>> call(LoginUsecaseParams params) {
 
-    return _authRepository.login(params.username, params.password);
+    return _authRepository.login(params.email, params.password);
   }
 
 } 

@@ -30,6 +30,8 @@ class AuthViewModel extends Notifier<AuthState>{
     String? batchId,
   }) async {
     state = state.copyWith(status: AuthStatus.loading);
+    //wait for 2 seconds
+    await Future.delayed(Duration(seconds: 2));
 
     final params = 
       RegisterUsecaseParams(
@@ -60,7 +62,7 @@ class AuthViewModel extends Notifier<AuthState>{
 //Login
 Future<void> login({
 
-    required String username,
+    required String email,
     required String password,
 
   }) async {
@@ -69,7 +71,7 @@ Future<void> login({
     final params = 
       LoginUsecaseParams(
   
-        username: username,
+        email: email,
         password: password,
 
       );
