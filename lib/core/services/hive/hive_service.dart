@@ -50,7 +50,7 @@ Future<void> insertDummyBatches() async{
 
     //Register other adapters here
     if(!Hive.isAdapterRegistered(HiveTableConstant.authTypeId)){
-      Hive.registerAdapter(BatchHiveModelAdapter());
+      Hive.registerAdapter(AuthHiveModelAdapter());
     }
   }
 

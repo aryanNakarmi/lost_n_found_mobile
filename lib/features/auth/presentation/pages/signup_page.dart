@@ -41,8 +41,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
     {'code': '+86', 'name': 'China', 'flag': '🇨🇳'},
   ];
 
-  // Mock batch data - will come from GET /api/v1/batches
-  List<BatchEntity> _batches = [];
+  // List<BatchEntity> _batches = [];
 
   @override
   void dispose() {
@@ -95,9 +94,10 @@ void initState(){
   Widget build(BuildContext context) {
 
     final batchState =ref.watch(BatchViewmodelProvider);
-    if(batchState.status == BatchStatus.loaded){
-      _batches =batchState.batches;
-    }
+    // if(batchState.status == BatchStatus.loaded){
+    //   _batches =batchState.batches;
+    // }
+
 
     return Scaffold(
       appBar: AppBar(
@@ -300,7 +300,7 @@ void initState(){
                       : "Choose your batch",
                       prefixIcon: Icon(Icons.school_rounded),
                     ),
-                    items: _batches.map((batch) {
+                    items: batchState.batches.map((batch) {
                       return DropdownMenuItem<String>(
                         value: batch.batchId,
                         child: Text(batch.batchName),
