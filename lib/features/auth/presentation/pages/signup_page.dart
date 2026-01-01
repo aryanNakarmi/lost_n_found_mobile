@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lost_n_found/features/auth/presentation/view_model/auth_view_model.dart';
 import 'package:lost_n_found/features/batch/domain/entities/batch_entity.dart';
 import 'package:lost_n_found/features/batch/presentation/state/batch_state.dart';
 import 'package:lost_n_found/features/batch/presentation/view_model/batch_viewmodel.dart';
@@ -63,18 +64,16 @@ class _SignupPageState extends ConsumerState<SignupPage> {
     }
 
     if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
+    // eta ko data view model ma pass garne
 
-      await Future.delayed(const Duration(seconds: 2));
-
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-        AppRoutes.pushReplacement(context, const DashboardPage());
-      }
+    ref.read(AuthViewModelProvider.notifier).register(
+      fullName: _nameController.text, 
+      email: _emailController.text, 
+      username: _nameController.text.trim().split('@').first, 
+      password: _passwordController.text,
+      phoneNumber: '$_selectedCountryCode${_phoneController.text}',
+      batchId: _selectedBatch,
+      );
     }
   }
 
@@ -86,18 +85,16 @@ void initState(){
 
   super.initState();
   Future.microtask((){
-  ref.read(BatchViewmodelProvider.notifier).getAllBatches();
+  ref.read(batchViewmodelProvider.notifier).getAllBatches();
 
   });
 }
   @override
   Widget build(BuildContext context) {
 
-    final batchState =ref.watch(BatchViewmodelProvider);
-    // if(batchState.status == BatchStatus.loaded){
-    //   _batches =batchState.batches;
-    // }
-
+    final batchState =ref.watch(batchViewmodelProvider);
+    //auuth state
+    final authState = ref.watch(AuthViewModelProvider);
 
     return Scaffold(
       appBar: AppBar(
