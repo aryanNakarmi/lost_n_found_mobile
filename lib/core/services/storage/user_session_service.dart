@@ -14,11 +14,11 @@ final userSesssionServiceProvider = Provider<UserSesssionService>((ref){
 });
 
 class UserSesssionService {
-  final SharedPreferences _pref;
+  final SharedPreferences _prefs;
 
   UserSesssionService({
     required SharedPreferences prefs
-  }): _pref =prefs;
+  }): _prefs =prefs;
 
   // Keys for storing data
 
@@ -43,33 +43,64 @@ class UserSesssionService {
     String? profileImage,
     
   }) async {
-    await _pref.setBool(_keysIsLoggedIn, true);
-    await _pref.setString(_keyUserId, userId);
-    await _pref.setString(_keyUserEmail, email);
-    await _pref.setString(_keyUsername, username);
-    await _pref.setString(_keyUserFullName, fullName);
+    await _prefs.setBool(_keysIsLoggedIn, true);
+    await _prefs.setString(_keyUserId, userId);
+    await _prefs.setString(_keyUserEmail, email);
+    await _prefs.setString(_keyUsername, username);
+    await _prefs.setString(_keyUserFullName, fullName);
     if( phoneNumber != null){
-    await _pref.setString(_keyUserPhoneNumber, phoneNumber);
+    await _prefs.setString(_keyUserPhoneNumber, phoneNumber);
     }
     if( batchId != null){
-    await _pref.setString(_keyUserBatchId, batchId);
+    await _prefs.setString(_keyUserBatchId, batchId);
     }
     if( profileImage != null){
-    await _pref.setString(_keyUserProfileImage, profileImage);
+    await _prefs.setString(_keyUserProfileImage, profileImage);
     }
   }
 
 
   //clear user session data
   Future<void> clearUserSession() async {
-    await _pref.remove(_keyUserBatchId);
-    await _pref.remove(_keyUserPhoneNumber);
-    await _pref.remove(_keyUserFullName);
-    await _pref.remove(_keyUsername);
-    await _pref.remove(_keyUserEmail);
-    await _pref.remove(_keyUserId);
-    await _pref.remove(_keysIsLoggedIn);
-    await _pref.remove(_keyUserProfileImage);
+    await _prefs.remove(_keyUserBatchId);
+    await _prefs.remove(_keyUserPhoneNumber);
+    await _prefs.remove(_keyUserFullName);
+    await _prefs.remove(_keyUsername);
+    await _prefs.remove(_keyUserEmail);
+    await _prefs.remove(_keyUserId);
+    await _prefs.remove(_keysIsLoggedIn);
+    await _prefs.remove(_keyUserProfileImage);
   }
 
+  bool isLoggedIn(){
+    return _prefs.getBool(_keysIsLoggedIn) ?? false;
+  }
+
+  String? getUserId(){
+    return _prefs.getString(_keyUserId);
+  }
+
+  String? getUserEmail(){
+    return _prefs.getString(_keyUserEmail);
+  }
+
+  String? getUsername(){
+    return _prefs.getString(_keyUsername);
+  }
+
+  String? getUserFullName(){
+    return _prefs.getString(_keyUserFullName);
+  }
+
+  String? getUserPhoneNumber(){
+    return _prefs.getString(_keyUserPhoneNumber);
+  }
+
+  String? getUserBatchId(){
+    return _prefs.getString(_keyUserBatchId);
+  }
+
+  String? getUserProfileImage(){
+    return _prefs.getString(_keyUserProfileImage);
+  }
 }
