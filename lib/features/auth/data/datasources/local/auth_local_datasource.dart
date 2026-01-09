@@ -1,18 +1,28 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lost_n_found/core/services/hive/hive_service.dart';
+import 'package:lost_n_found/core/services/storage/user_session_service.dart';
 import 'package:lost_n_found/features/auth/data/datasources/auth_datasource.dart';
 import 'package:lost_n_found/features/auth/data/models/auth_hive_model.dart';
 
 final AuthLocalDatasourceProvider = Provider<AuthLocalDatasource>((ref){
 
   final hiveService =ref.watch(hiveServiceProvider);
-  return AuthLocalDatasource(hiveService: hiveService);
+  final userSessionService = ref.read(userSesssionServiceProvider);
+  return AuthLocalDatasource(
+    hiveService: hiveService,
+    userSessionService: userSessionService
+    );
 });
 class AuthLocalDatasource implements IAuthDataSource{
 
   final HiveService _hiveService;
+  final UserSesssionService _userSesssionService;
   AuthLocalDatasource({
-    required HiveService hiveService}): _hiveService =hiveService;
+    required HiveService hiveService, 
+    required UserSesssionService userSessionService}):
+     _hiveService =hiveService,
+     _userSesssionService = userSessionService
+    ;
 
 
   @override
