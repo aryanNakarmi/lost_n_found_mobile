@@ -49,6 +49,16 @@ class AuthLocalDatasource implements IAuthDataSource{
   Future<AuthHiveModel?> login(String email, String password) async {
      try{
     final user = await _hiveService.loginUser(email, password);
+    if(user != null){
+      await _userSesssionService.saveUserSession(userId: user.authId!, 
+      email: user.email, 
+      username: user.username, 
+      fullName: user.fullName, 
+      phoneNumber: user.phoneNumber, 
+      batchId: user.batchId,
+      profileImage: user.profilePicture ?? '',
+      );
+    }
     return Future.value(user);
    }catch(e){
     return Future.value(null);
