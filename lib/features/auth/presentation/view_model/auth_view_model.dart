@@ -41,7 +41,7 @@ class AuthViewModel extends Notifier<AuthState>{
         password: password,
         phoneNumber: phoneNumber,
         batchId: batchId,
-      );
+      );  
       final result =await _registerUsecase(params);
       result.fold(
         (failure){

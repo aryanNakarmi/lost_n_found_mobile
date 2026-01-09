@@ -5,6 +5,7 @@ class StorageService {
 
   StorageService({required SharedPreferences prefs}) : _prefs = prefs;
 
+
   // String
   Future<bool> setString(String key, String value) =>
       _prefs.setString(key, value);
