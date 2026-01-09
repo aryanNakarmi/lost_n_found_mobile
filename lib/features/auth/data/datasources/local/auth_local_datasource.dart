@@ -56,10 +56,10 @@ class AuthLocalDatasource implements IAuthDataSource{
       fullName: user.fullName, 
       phoneNumber: user.phoneNumber, 
       batchId: user.batchId,
-      profileImage: user.profilePicture ?? '',
+      profilePicture: user.profilePicture ?? '',
       );
     }
-    return Future.value(user);
+    return user;
    }catch(e){
     return Future.value(null);
    }

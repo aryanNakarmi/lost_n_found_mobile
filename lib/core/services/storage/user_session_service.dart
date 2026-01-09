@@ -40,7 +40,7 @@ class UserSesssionService {
     required String fullName,
     required String? phoneNumber,
     required String? batchId,
-    String? profileImage,
+    String? profilePicture,
     
   }) async {
     await _prefs.setBool(_keysIsLoggedIn, true);
@@ -54,8 +54,8 @@ class UserSesssionService {
     if( batchId != null){
     await _prefs.setString(_keyUserBatchId, batchId);
     }
-    if( profileImage != null){
-    await _prefs.setString(_keyUserProfileImage, profileImage);
+    if( profilePicture != null){
+    await _prefs.setString(_keyUserProfileImage, profilePicture);
     }
   }
 
