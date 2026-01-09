@@ -19,4 +19,14 @@ class UserSesssionService {
   UserSesssionService({
     required SharedPreferences prefs
   }): _pref =prefs;
+
+  // Keys for storing data
+
+  static const String _keysIsLoggedIn = 'is_logged_in';
+  static const String _keyUserId = 'user_id';
+  static const String _keyUserEmail = 'user_email';
+  static const String _keyUserFullName = 'user_full_name';
+  static const String _keyUserPhoneNumber = 'user_phone_number';
+  static const String _keyUserBatchId= 'user_batch_id';
+  static const String _keyUserProfileImage= 'user_profile_image';
 }
