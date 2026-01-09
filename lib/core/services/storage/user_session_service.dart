@@ -3,14 +3,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 //shared pref provider
-final SharedPreferencesProvider = Provider<SharedPreferences>((ref){
-
+final SharedPreferencesProvider = Provider<SharedPreferences>((ref) {
+throw UnimplementedError("Shared pref lai hamile main.dart ma initialize garincha ");
 });
 //provider
 
 final userSesssionServiceProvider = Provider<UserSesssionService>((ref){
 
-  return UserSesssionService(prefs: prefs);
+  return UserSesssionService(prefs: ref.read(SharedPreferencesProvider));
 });
 
 class UserSesssionService {

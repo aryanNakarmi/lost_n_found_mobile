@@ -17,5 +17,9 @@ void main() async {
     ),
   );
   await HiveService().init();
+
+  //shared pref ko object
+  //shared preference = async
+  // provider =sync
   runApp(const ProviderScope(child: MyApp()));
 }
