@@ -3,15 +3,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 //shared pref provider
-final sharedPreferencesProvider = Provider<SharedPreferences>((ref{
+final SharedPreferencesProvider = Provider<SharedPreferences>((ref){
 
-}))
+});
 //provider
 
 final userSesssionServiceProvider = Provider<UserSesssionService>((ref){
 
   return UserSesssionService(prefs: prefs);
 });
+
 class UserSesssionService {
   final SharedPreferences _pref;
 
