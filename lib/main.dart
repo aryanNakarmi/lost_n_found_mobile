@@ -27,7 +27,8 @@ void main() async {
   //shared prefs
 
   final sharedPrefs = await SharedPreferences.getInstance();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(
+    
+
+    child: MyApp()));
 }
-
-
