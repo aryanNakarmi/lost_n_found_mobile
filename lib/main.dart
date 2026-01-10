@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lost_n_found/app/app.dart';
 import 'package:lost_n_found/core/services/hive/hive_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,5 +22,12 @@ void main() async {
   //shared pref ko object
   //shared preference = async
   // provider =sync
+
+
+  //shared prefs
+
+  final sharedPrefs = await SharedPreferences.getInstance();
   runApp(const ProviderScope(child: MyApp()));
 }
+
+
