@@ -1,0 +1,34 @@
+# Flutter
+.dart_tool/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+*.lock
+
+# Generated files
+.metadata
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Web
+web/generated_plugin_registrant.dart
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Local configuration
+.env
+
+# Firebase
+google-services.json
